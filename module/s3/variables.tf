@@ -1,19 +1,39 @@
-variable "bucket_name" {
+variable "bucket_names" {
+  description = "List of S3 bucket names"
+  type = list(string)
+}
+
+variable "bucket_acl" {
+  description = "ACL for the S3 bucket"
   type        = string
-  description = "Name of the S3 bucket"
+  default     = "private"
+}
+
+variable "bucket_region" {
+  description = "AWS region for the bucket"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "logs_bucket_name" {
+  description = "Name of the bucket where access logs are stored"
+  type        = string
 }
 
 variable "enable_versioning" {
+  description = "Enable versioning for the S3 bucket"
   type        = bool
-  description = "Enable versioning for the bucket"
+  default     = true
 }
 
-variable "enable_encryption" {
+variable "prevent_destroy" {
+  description = "Prevent destroying resources"
   type        = bool
-  description = "Enable encryption for the bucket"
+  default     = false
 }
 
 variable "tags" {
+  description = "Tags for all resources"
   type        = map(string)
-  description = "Tags for the bucket"
+  default     = {}
 }
