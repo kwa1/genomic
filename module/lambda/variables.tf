@@ -1,34 +1,42 @@
 variable "function_name" {
-  type        = string
   description = "Name of the Lambda function"
+  type        = string
 }
 
-variable "runtime" {
+variable "source_bucket_name" {
+  description = "The source S3 bucket name"
   type        = string
-  description = "Runtime for the Lambda function"
 }
 
-variable "handler" {
+variable "destination_bucket_name" {
+  description = "The destination S3 bucket name"
   type        = string
-  description = "Handler for the Lambda function"
 }
 
-variable "role_arn" {
+variable "object_key" {
+  description = "The object key in S3"
   type        = string
-  description = "ARN of the execution role"
 }
 
-variable "source_code_path" {
+variable "source_path" {
+  description = "The source path for the object"
   type        = string
-  description = "Path to the Lambda source code ZIP file"
 }
 
 variable "environment_variables" {
+  description = "Environment variables for Lambda function"
   type        = map(string)
-  description = "Environment variables for the Lambda function"
+  default     = {}
 }
 
-variable "tags" {
-  type        = map(string)
-  description = "Tags for the Lambda function"
+variable "filter_prefix" {
+  description = "Prefix for S3 event trigger"
+  type        = string
+  default     = ""
+}
+
+variable "filter_suffix" {
+  description = "Suffix for S3 event trigger"
+  type        = string
+  default     = ".jpg"
 }
