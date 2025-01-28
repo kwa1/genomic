@@ -65,7 +65,7 @@ resource "aws_lambda_permission" "allow_s3_event" {
   function_name = aws_lambda_function.this.function_name
   principal     = "s3.amazonaws.com"
 
-  source_arn = aws_s3_bucket.this.arn
+  source_arn = "arn:aws:s3:::${var.source_bucket_name}"
 }
 resource "aws_cloudwatch_log_group" "this" {
   name              = "/aws/lambda/${var.function_name}"
@@ -81,4 +81,9 @@ resource "aws_s3_bucket_notification" "lambda_trigger" {
     filter_prefix = var.filter_prefix
     filter_suffix = var.filter_suffix
   }
+}
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_file = var.source_path
+  output_path = "${path.module}/lambda.zip"
 }
