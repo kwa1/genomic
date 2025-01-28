@@ -1,49 +1,5 @@
 
 
-variable "aws_region" {
-  description = "AWS region"
-  type        = string
-  default     = "us-east-1"
-}
-
-variable "bucket_names" {
-  description = "List of S3 bucket names"
-  type = list(object({
-    bucket_name = string
-    object_key  = string
-    source_path = string
-  }))
-}
-
-variable "lambda_function_name" {
-  description = "Lambda function name"
-  type        = string
-  default     = "image-metadata-stripping-function"
-}
-
-variable "bucket_acl" {
-  description = "ACL for the bucket"
-  type        = string
-  default     = "private"
-}
-
-variable "bucket_region" {
-  description = "AWS region for the bucket"
-  type        = string
-  default     = "us-east-1"
-}
-
-variable "prevent_destroy" {
-  description = "Prevent destroying resources"
-  type        = bool
-  default     = false
-}
-
-variable "tags" {
-  description = "Tags for all resources"
-  type        = map(string)
-  default     = {}
-}
 variable "lambda_function_name" {
   description = "The name of the Lambda function"
   type        = string
@@ -76,3 +32,53 @@ variable "filter_suffix" {
   type        = string
   default     = ""
 }
+
+variable "lambda_function_name" {
+  description = "The name of the Lambda function"
+  type        = string
+}
+
+variable "object_key" {
+  description = "The key for the Lambda ZIP file in S3"
+  type        = string
+}
+variable "bucket_names" {
+  description = "List of S3 bucket names"
+  type = list(object({
+    bucket_name = string
+  }))
+  default = [
+    {
+      bucket_name = "bucket-a"  # Name of the first bucket
+    },
+    {
+      bucket_name = "bucket-b"  # Name of the second bucket
+    }
+  ]
+}
+
+variable "bucket_acl" {
+  description = "ACL for the bucket"
+  type        = string
+  default     = "private"
+}
+
+variable "bucket_region" {
+  description = "AWS region for the bucket"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "prevent_destroy" {
+  description = "Prevent destroying resources"
+  type        = bool
+  default     = false
+}
+
+variable "tags" {
+  description = "Tags for all resources"
+  type        = map(string)
+  default     = {}
+}
+
+
