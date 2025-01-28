@@ -1,5 +1,3 @@
-
-
 variable "lambda_function_name" {
   description = "The name of the Lambda function"
   type        = string
@@ -33,27 +31,14 @@ variable "filter_suffix" {
   default     = ""
 }
 
-variable "lambda_function_name" {
-  description = "The name of the Lambda function"
-  type        = string
-}
-
-variable "object_key" {
-  description = "The key for the Lambda ZIP file in S3"
-  type        = string
-}
 variable "bucket_names" {
   description = "List of S3 bucket names"
   type = list(object({
     bucket_name = string
   }))
   default = [
-    {
-      bucket_name = "bucket-a"  # Name of the first bucket
-    },
-    {
-      bucket_name = "bucket-b"  # Name of the second bucket
-    }
+    { bucket_name = "bucket-a" },
+    { bucket_name = "bucket-b" }
   ]
 }
 
@@ -80,5 +65,3 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
-
-
