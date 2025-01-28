@@ -1,6 +1,16 @@
 variable "bucket_names" {
   description = "List of S3 bucket names"
-  type = list(string)
+  type = list(object({
+    bucket_name = string
+  }))
+  default = [
+    {
+      bucket_name = "bucket-a"
+    },
+    {
+      bucket_name = "bucket-b"
+    }
+  ]
 }
 
 variable "bucket_acl" {
