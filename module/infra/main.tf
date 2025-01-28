@@ -13,7 +13,7 @@ module "lambda" {
   source               = "./lambda"
   function_name        = var.lambda_function_name
   source_bucket_name   = module.s3.bucket_names[0]
-  destination_bucket_name = "bucket-b-name"
+  destination_bucket_name = module.s3.bucket_names[1]  # Dynamically using the second bucket
   object_key           = var.object_key
   source_path          = var.source_path
   environment_variables = var.environment_variables
