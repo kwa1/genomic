@@ -1,3 +1,5 @@
+
+
 variable "aws_region" {
   description = "AWS region"
   type        = string
@@ -41,4 +43,36 @@ variable "tags" {
   description = "Tags for all resources"
   type        = map(string)
   default     = {}
+}
+variable "lambda_function_name" {
+  description = "The name of the Lambda function"
+  type        = string
+}
+
+variable "object_key" {
+  description = "The key for the Lambda ZIP file in S3"
+  type        = string
+}
+
+variable "source_path" {
+  description = "The local path to the Lambda ZIP file"
+  type        = string
+}
+
+variable "environment_variables" {
+  description = "Environment variables for Lambda function"
+  type        = map(string)
+  default     = {}
+}
+
+variable "filter_prefix" {
+  description = "Prefix for S3 event trigger"
+  type        = string
+  default     = ""
+}
+
+variable "filter_suffix" {
+  description = "Suffix for S3 event trigger"
+  type        = string
+  default     = ""
 }
