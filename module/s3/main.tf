@@ -10,12 +10,6 @@ resource "aws_s3_bucket" "this" {
   tags = var.tags
 }
 
-# Output bucket names
-output "bucket_names" {
-  value = aws_s3_bucket.this[*].bucket
-}
-
-# Creating S3 Buckets with Logging Enabled
 resource "aws_s3_bucket" "this_logging" {
   count = length(var.bucket_names)
 
@@ -27,7 +21,6 @@ resource "aws_s3_bucket" "this_logging" {
     prevent_destroy = var.prevent_destroy
   }
 
-  # Enable S3 access logging
   logging {
     target_bucket = var.logs_bucket_name
     target_prefix = "logs/${var.bucket_names[count.index].bucket_name}/"
@@ -47,7 +40,6 @@ resource "aws_s3_bucket" "this_logging" {
   tags = var.tags
 }
 
-# Enabling Versioning on S3 Buckets
 resource "aws_s3_bucket" "this_versioning" {
   count = length(var.bucket_names)
 
