@@ -67,6 +67,10 @@ resource "aws_lambda_permission" "allow_s3_event" {
 
   source_arn = aws_s3_bucket.this.arn
 }
+resource "aws_cloudwatch_log_group" "this" {
+  name              = "/aws/lambda/${var.function_name}"
+  retention_in_days = 14
+}
 
 resource "aws_s3_bucket_notification" "lambda_trigger" {
   bucket = var.source_bucket_name
