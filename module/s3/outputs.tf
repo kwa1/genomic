@@ -1,4 +1,4 @@
-output "s3_buckets_names" {
+output "s3_bucket_names" {
   description = "The list of S3 bucket names"
   value       = aws_s3_bucket.this_logging[*].bucket
 }
